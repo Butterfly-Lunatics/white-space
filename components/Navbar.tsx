@@ -7,7 +7,7 @@ type Props = {
   active: string
 }
 
-const Navbar: React.FC = (props: Props) => {
+const Navbar: React.FC<Props> = (props: Props) => {
   return (
     <div className="mx-auto flex w-full items-center justify-between bg-black pt-10 text-white">
       <Image src={Logo} />

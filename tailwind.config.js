@@ -5,11 +5,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      aspectRatio: {
+        banner: '7.48 / 1',
+      },
       fontFamily: {
-        din: ['din', "sans-serif"],
-        pop: ['poppins', "sans-serif"],
-        indie: ['indie-flower', "sans-serif"],
-      }
+        din: ['din', 'sans-serif'],
+        pop: ['Poppins', 'sans-serif'],
+        indie: ['Indie Flower', 'sans-serif'],
+        mont: ['Montserrat', 'sans-serif'],
+      },
     },
   },
   plugins: [],
