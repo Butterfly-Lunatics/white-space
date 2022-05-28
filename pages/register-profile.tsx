@@ -1,9 +1,15 @@
 import React from 'react'
+import useAuth from '../hooks/useAuthentication'
 
-type Props = {}
-
-const Index = (props: Props) => {
+const Index = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const usernameRef = React.useRef<HTMLInputElement>(null)
+
+  const [{ user }] = useAuth()
+  const getPicture = () => {
+    inputRef.current?.files?.[0]
+  }
+
   return (
     <div className="absolute top-1/2 left-1/2 mx-auto flex h-[80vh] w-[80%] -translate-y-1/2 -translate-x-1/2">
       <div className="grid h-full w-2/5 place-items-center bg-black">
@@ -14,17 +20,35 @@ const Index = (props: Props) => {
         <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-10">
           <div className="flex w-full flex-col gap-3 text-3xl">
             <label className="text-left font-pop">Name</label>
-            <input className="rounded-lg border-2 border-black" />
+            <input
+              className="rounded-lg border-2 border-black"
+              ref={usernameRef}
+            />
             <label className="text-left font-pop">Profile Pic</label>
-            <input type={'file'} accept="image/*" className="invisible absolute" ref={inputRef} />
+            <input
+              type="file"
+              accept="image/*"
+              className="invisible absolute"
+              ref={inputRef}
+            />
             <div
-              className="w-full rounded-xl text-lg bg-black py-3 text-center font-pop text-white hover:cursor-pointer"
-              onClick={()=> inputRef.current?.click()}
+              className="w-full rounded-xl bg-black py-3 text-center font-pop text-lg text-white hover:cursor-pointer"
+              onClick={() => inputRef.current?.click()}
             >
-              {!inputRef.current?.files?.[0] ? "UPLOAD A PROFILE PIC" : inputRef.current?.files?.[0].name?.substring(0, 20) + "..."}
+              {!inputRef.current?.files?.[0]
+                ? 'UPLOAD A PROFILE PIC'
+                : inputRef.current?.files?.[0].name?.substring(0, 20) + '...'}
             </div>
           </div>
-          <button className="rounded-lg bg-[#f24c4c] w-full py-3 font-pop text-2xl font-extrabold text-white">
+          <button
+            className="w-full rounded-lg bg-[#f24c4c] py-3 font-pop text-2xl font-extrabold text-white"
+            onClick={async () => {
+              user?.set('userData', {
+                username: usernameRef.current?.value,
+                profilePic: getPicture(),
+              })
+            }}
+          >
             SUBMIT
           </button>
         </div>
