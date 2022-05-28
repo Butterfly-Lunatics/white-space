@@ -1,5 +1,4 @@
-import Router from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useMoralisFile } from 'react-moralis'
 import useAuth from '../hooks/useAuthentication'
 
