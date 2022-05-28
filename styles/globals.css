@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   box-sizing: border-box;
 }
 
 @font-face {
-  font-family: "din";
-  src: url("../public/fonts/Din.ttf");
+  font-family: 'din';
+  src: url('../public/static/fonts/Din.ttf');
 }
