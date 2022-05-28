@@ -17,11 +17,8 @@ export default function useAuth(redirect = true): returnType {
   const [chainId, setChainId] = useState<string>(
     moralisObject.Moralis.getChainId()!
   )
-  const [walletAddress, setWalletAddress] = useState<string>('')
-
-  useEffect(
-    () => setWalletAddress(moralisObject.user?.get('ethAddress')),
-    [moralisObject.user]
+  const [walletAddress, setWalletAddress] = useState<string>(
+    moralisObject.user?.get('ethAddress')
   )
 
   // wait 0.5 sec to check authentication status

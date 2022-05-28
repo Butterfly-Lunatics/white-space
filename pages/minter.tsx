@@ -11,14 +11,16 @@ const web3 = new Web3(Web3.givenProvider)
 const Minter: NextPage = () => {
   const [{ authenticate, isAuthenticated, logout, user }, loading] =
     useAuth(false)
-  const { fetch, isFetching } = useWeb3ExecuteFunction()
-  const nfts = useState([])
-  fetch({
-    params: {
-      abi: contractABI,
-      params: {},
-    },
-  })
+
+  // const { fetch, isFetching } = useWeb3ExecuteFunction()
+  // const nfts = useState([])
+  // fetch({
+  //   params: {
+  //     abi: contractABI,
+  //     params: {},
+  //   },
+  // })
+
   return (
     <div>
       {loading ? (
