@@ -11,13 +11,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="/fonts/Din.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin=""
-        />
       </Head>
       <Hero />
       <Banner />

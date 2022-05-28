@@ -9,7 +9,6 @@ module.exports = {
         banner: '7.48 / 1',
       },
       fontFamily: {
-        din: ['DIN 1451 Std', 'sans-serif'],
         pop: ['Poppins', 'sans-serif'],
         indie: ['Indie Flower', 'sans-serif'],
         mont: ['Montserrat', 'sans-serif'],
