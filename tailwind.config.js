@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         din: ['din', "sans-serif"],
+        pop: ['poppins', "sans-serif"],
+        indie: ['indie-flower', "sans-serif"],
       }
     },
   },
