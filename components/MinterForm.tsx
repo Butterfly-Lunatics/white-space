@@ -1,41 +1,46 @@
 import { FormEventHandler, useState } from 'react'
-import { contractABI, contractAddress } from '../contracts/contract'
 import Moralis from 'moralis'
 import { NextPage } from 'next'
-import Web3 from 'web3'
+import { Contract } from 'web3-eth-contract/types'
+import { useMoralisFile } from 'react-moralis'
+import { contractAddress } from '../contracts/contract'
 
 const MinterForm: NextPage<{
   user: Moralis.User<Moralis.Attributes>
-  web3: Web3
-}> = ({ user, web3 }) => {
+  contract: Contract
+}> = ({ user, contract }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [file, setFile] = useState<File | null>(null)
+
+  const { saveFile } = useMoralisFile()
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     try {
       if (file) {
         // Attempt to save image to IPFS
-        const file1 = new Moralis.File(file.name, file)
-        await file1.saveIPFS()
-        const file1url = file1.url()
+        const image = await saveFile(file.name, file, { saveIPFS: true })
+        console.log('uploading')
+        const imageurl: string = (image as any).ipfs()
 
         // Generate metadata and save to IPFS
         const metadata = {
-          title,
+          name: title,
           description,
-          image: file1url,
+          image: imageurl,
         }
 
-        const file2 = new Moralis.File(`${title}metadata.json`, {
-          base64: Buffer.from(JSON.stringify(metadata)).toString('base64'),
-        })
-        await file2.saveIPFS()
-        const metadataurl = file2.url()
+        const metadataFile = await saveFile(
+          `${title}metadata.json`,
+          {
+            base64: Buffer.from(JSON.stringify(metadata)).toString('base64'),
+          },
+          { type: 'base64', saveIPFS: true }
+        )
+        const metadataurl: string = (metadataFile as any).ipfs()
 
         // Interact with smart contract
-        const contract = new web3.eth.Contract(contractABI, contractAddress)
         const response = await contract.methods
           .mint(metadataurl)
           .send({ from: user.get('ethAddress') })

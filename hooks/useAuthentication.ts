@@ -6,8 +6,8 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 interface returnType extends Array<MoralisContextValue | boolean | string> {
   0: MoralisContextValue
-  1: boolean
-  2: string
+  1: string
+  2: boolean
   3: string
 }
 
@@ -24,7 +24,26 @@ export default function useAuth(redirect = true): returnType {
   // wait 0.5 sec to check authentication status
   useEffect(() => {
     if (!moralisObject.isAuthenticated && loading) {
-      sleep(500).then(() => setLoading(false))
+      sleep(1000).then(() => {
+        setLoading(false)
+        setChainId(moralisObject.Moralis.getChainId()!)
+        setWalletAddress(moralisObject.user?.attributes['ethAddress'])
+
+        if (
+          !moralisObject.isWeb3Enabled &&
+          !moralisObject.isWeb3EnableLoading
+        ) {
+          console.log('started')
+          moralisObject.Moralis.enableWeb3().then(
+            (provider) =>
+              provider.detectNetwork().then((network) => {
+                setChainId(network.chainId.toString(10))
+                console.log(moralisObject.isWeb3Enabled)
+              }),
+            (err) => console.log('Error: ', err)
+          )
+        }
+      })
     } else {
       !moralisObject.isAuthenticated && redirect && Router.replace('/')
     }
@@ -40,5 +59,7 @@ export default function useAuth(redirect = true): returnType {
     })
   }, [])
 
-  return [moralisObject, loading, chainId, walletAddress]
+  console.log(walletAddress, loading, chainId)
+
+  return [moralisObject, walletAddress, loading, chainId]
 }
