@@ -6,8 +6,9 @@
 * {
   box-sizing: border-box;
 }
-
-@font-face {
-  font-family: 'din';
-  src: url('../public/fonts/Din.ttf');
+@layer base {
+  @font-face {
+    font-family: 'din';
+    src: url("/fonts/din.woff2") format("woff2");
+  }
 }
