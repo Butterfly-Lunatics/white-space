@@ -17,7 +17,7 @@ const Hero: NextPage = () => {
             </div>
           </div>
           <div className="text-white">
-            <div className="font-din text-9xl">
+            <div className="din text-9xl">
               PLAY WITH <br /> YOUR SPACE
             </div>
             <div className="font-pop text-2xl font-light">

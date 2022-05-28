@@ -11,7 +11,7 @@ const Navbar: React.FC<Props> = (props: Props) => {
   return (
     <div className="mx-auto flex w-full items-center justify-between bg-black pt-10 text-white">
       <Image src={Logo} />
-      <div className="flex gap-20 font-din text-2xl text-white">
+      <div className="flex gap-20 din text-2xl text-white">
         <Link href={'/'}>
           <div className={`${props.active === 'home' && 'text-[#52FF00]'}`}>
             Home
