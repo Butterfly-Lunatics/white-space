@@ -4,7 +4,7 @@ type Props = {}
 
 const Banner = (props: Props) => {
   return (
-    <div className="relative mx-auto w-4/5 font-din aspect-banner overflow-hidden my-14">
+    <div className="relative mx-auto w-4/5 din aspect-banner overflow-hidden my-14">
       <img src="/static/cube.png" className="absolute -z-10 w-full" />
       <div className="flex h-full w-full items-center text-[5rem] text-white ml-14">
         HAVE FUN WITH YOUR&nbsp;
