@@ -8,6 +8,10 @@ const MinterForm: NextPage<{
   user: Moralis.User<Moralis.Attributes>
   web3: Web3
 }> = ({ user, web3 }) => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [file, setFile] = useState<File | null>(null)
+
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     try {
@@ -48,10 +52,6 @@ const MinterForm: NextPage<{
       alert('An error occured!')
     }
   }
-
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [file, setFile] = useState<File | null>(null)
 
   return (
     <form onSubmit={onSubmit}>
