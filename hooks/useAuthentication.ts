@@ -59,7 +59,7 @@ export default function useAuth(redirect = true): returnType {
     })
   }, [])
 
-  console.log(walletAddress, loading, chainId)
+  // console.log(walletAddress, loading, chainId)
 
   return [moralisObject, walletAddress, loading, chainId]
 }

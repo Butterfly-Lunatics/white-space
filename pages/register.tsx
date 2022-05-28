@@ -5,7 +5,7 @@ import { useMoralis } from 'react-moralis'
 const Index = () => {
   const { authenticate, isAuthenticated } = useMoralis()
   useEffect(() => {
-    if (isAuthenticated) Router.replace('/dashboard')
+    if (isAuthenticated) Router.replace('/register-profile')
   }, [isAuthenticated])
 
   return (

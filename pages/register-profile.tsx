@@ -1,13 +1,18 @@
-import React from 'react'
+import Router from 'next/router'
+import React, { useEffect } from 'react'
+import { useMoralisFile } from 'react-moralis'
 import useAuth from '../hooks/useAuthentication'
 
 const Index = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const usernameRef = React.useRef<HTMLInputElement>(null)
-
+  const { saveFile } = useMoralisFile()
   const [{ user }] = useAuth()
-  const getPicture = () => {
-    inputRef.current?.files?.[0]
+
+  const getPicture = async () => {
+    const file = inputRef.current?.files?.[0]!
+    const image = await saveFile(file.name, file, { saveIPFS: false })
+    return image!.url()
   }
 
   return (
@@ -43,10 +48,13 @@ const Index = () => {
           <button
             className="w-full rounded-lg bg-[#f24c4c] py-3 font-pop text-2xl font-extrabold text-white"
             onClick={async () => {
-              user?.set('userData', {
+              console.log('updating records')
+              const data = {
                 username: usernameRef.current?.value,
-                profilePic: getPicture(),
-              })
+                profilePic: await getPicture(),
+              }
+              user?.set('userData', data)
+              await user?.save()
             }}
           >
             SUBMIT
