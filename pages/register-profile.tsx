@@ -11,7 +11,9 @@ const Index = () => {
   const usernameRef = React.useRef<HTMLInputElement>(null)
   const { saveFile } = useMoralisFile()
   const [{ user }] = useAuth()
-  const [registered, setRegistered] = useState(!!user?.get('userData').username)
+  const [registered, setRegistered] = useState(
+    user?.get('userData').username === undefined
+  )
 
   useEffect(() => {
     registered && router.replace('/explore')

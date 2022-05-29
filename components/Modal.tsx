@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
+import { contractAddress } from '../contracts/contract'
 import useAuth from '../hooks/useAuthentication'
 import { Data } from '../pages/explore'
 
@@ -8,7 +9,23 @@ type Props = {
 }
 
 const Modal = (props: Props) => {
-  const auth = useAuth()
+  const [{ Moralis, user, enableWeb3 }] = useAuth()
+
+  const transferNFT: MouseEventHandler<HTMLButtonElement> = async () => {
+    console.log('Transfering ownership')
+    await enableWeb3()
+    console.log('enabled')
+
+    await Moralis.transfer({
+      type: 'erc721',
+      receiver: user?.get('ethAddress'),
+      contractAddress,
+      tokenId: props.data.token_id,
+    })
+
+    console.log('Done!')
+  }
+
   return (
     <div className="absolute top-1/2 left-1/2  z-10 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-xl hover:cursor-default">
       <div className="din rounded-t-xl bg-[#52ff00] py-5 text-center text-5xl">
@@ -20,12 +37,14 @@ const Modal = (props: Props) => {
           {props.data.metadata.description}
         </div>
         <div className="mt-5 flex w-full justify-center gap-5">
-          <button
-            className="rounded-lg bg-[#f24c4c] px-10 py-3 font-pop text-lg font-extrabold text-white"
-            onClick={() => {}}
-          >
-            BUY
-          </button>
+          {props.data.username !== user?.getUsername() && (
+            <button
+              className="rounded-lg bg-[#f24c4c] px-10 py-3 font-pop text-lg font-extrabold text-white"
+              onClick={transferNFT}
+            >
+              BUY
+            </button>
+          )}
           <button
             className="rounded-lg border-2 border-[#f24c4c] px-10 py-3 font-pop text-lg font-extrabold text-[#f24c4c]"
             onClick={() => props.clickHandler()}
