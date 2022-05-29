@@ -120,8 +120,8 @@ const Index = () => {
             Create
           </div>
           <img
-            src="/static/logos/fb.png"
-            className="absolute left-1/2 top-full h-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full outline outline-8 outline-white"
+            src={user?.attributes['userData'].profilePic}
+            className="absolute left-1/2 top-full h-[120px] aspect-square object-cover -translate-x-1/2 -translate-y-1/2 rounded-full outline outline-8 outline-white"
           />
         </div>
       </div>
