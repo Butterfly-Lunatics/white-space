@@ -46,7 +46,7 @@ export default function useAuth(redirect = true): returnType {
         }
       })
     } else {
-      !moralisObject.isAuthenticated && redirect && Router.replace('/')
+      !moralisObject.isAuthenticated && redirect && Router.replace('/register')
     }
   }, [loading])
 

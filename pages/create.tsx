@@ -4,25 +4,33 @@ import Web3 from 'web3'
 import { contractABI, contractAddress } from '../contracts/contract'
 import { useMoralisFile, useNewMoralisObject } from 'react-moralis'
 import useAuth from '../hooks/useAuthentication'
+import Router, { useRouter } from 'next/router'
+import Spinner from '../components/Spinner'
 
 const web3 = new Web3(Web3.givenProvider)
 const contract = new web3.eth.Contract(contractABI, contractAddress)
 
 const Index = () => {
+
+  const router = useRouter();
+
   const r_title = useRef<HTMLInputElement | null>(null)
   const r_desc = useRef<HTMLTextAreaElement | null>(null)
   const r_price = useRef<HTMLInputElement>(null)
   const r_image = useRef<HTMLInputElement>(null)
   const r_finalimage = useRef<HTMLImageElement>(null)
+  const r_submit = useRef<HTMLButtonElement>(null)
 
   const [imgName, setImgName] = useState('click to add screenshot of the space')
   const { saveFile } = useMoralisFile()
   const [{ user }] = useAuth()
   const { save } = useNewMoralisObject('Sellers')
 
+  const [loading, setLoading] = useState(false)
+
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
-
+    setLoading(true);
     const title = r_title.current?.value
     const desc = (r_desc.current as any).value
     const price = r_price.current?.value
@@ -66,6 +74,8 @@ const Index = () => {
           `NFT successfully minted. Contract address - ${contractAddress} and Token ID - ${tokenId}`
         )
 
+        setLoading(false);
+          
         const data = {
           token_id: tokenId,
           image: image?._url,
@@ -77,6 +87,9 @@ const Index = () => {
           onSuccess: (e) => console.log(e.id),
           onError: (e) => console.log(e.message),
         })
+        // insert confetti here
+  
+        router.push('/explore')
       }
     } catch (err) {
       console.error(err)
@@ -95,8 +108,10 @@ const Index = () => {
     r_finalimage.current!.src = URL.createObjectURL(r_image.current!.files![0])
   }
 
+
   return (
     <div className="relative w-full">
+      {loading && <Spinner />}
       <div className="w-full bg-black">
         <div className="relative mx-auto w-4/5">
           <Navbar active="create" />
@@ -139,12 +154,7 @@ const Index = () => {
             ref={r_image}
             onChange={imageHandler}
           />
-          <button
-            className="absolute left-1/2 mt-10 w-1/5 -translate-x-1/2 rounded-lg bg-[#52ff00] py-3 font-pop text-2xl font-extrabold"
-            type="submit"
-          >
-            SUBMIT
-          </button>
+          <button type='submit' ref={r_submit}></button>
         </form>
         <div
           className="din relative h-[350px] w-1/2 rounded-lg border-2 border-black bg-rose-50 text-4xl hover:cursor-pointer"
@@ -155,8 +165,8 @@ const Index = () => {
             style={{
               display:
                 imgName === 'click to add screenshot of the space'
-                  ? 'none'
-                  : 'block',
+                  ? 'block'
+                  : 'none',
             }}
           >
             {imgName}
@@ -167,6 +177,13 @@ const Index = () => {
           />
         </div>
       </div>
+      <button
+        className="absolute left-1/2 mt-10 w-1/5 -translate-x-1/2 rounded-lg bg-[#52ff00] py-3 font-pop text-2xl font-extrabold"
+        type="button"
+        onClick ={()=> {r_submit.current?.click()}}
+      >
+        SUBMIT
+      </button>
     </div>
   )
 }
