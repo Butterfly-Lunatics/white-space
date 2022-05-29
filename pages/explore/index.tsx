@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import Card from '../components/Card'
-import Navbar from '../components/Navbar'
+import Card from '../../components/Card'
+import Navbar from '../../components/Navbar'
 
 type Props = {}
 

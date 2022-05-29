@@ -2,7 +2,8 @@ import Router from 'next/router'
 import { useState, useEffect } from 'react'
 import { MoralisContextValue, useMoralis } from 'react-moralis'
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms))
 
 interface returnType extends Array<MoralisContextValue | boolean | string> {
   0: MoralisContextValue
@@ -33,12 +34,12 @@ export default function useAuth(redirect = true): returnType {
           !moralisObject.isWeb3Enabled &&
           !moralisObject.isWeb3EnableLoading
         ) {
-          console.log('started')
+          // console.log('started')
           moralisObject.Moralis.enableWeb3().then(
             (provider) =>
               provider.detectNetwork().then((network) => {
                 setChainId(network.chainId.toString(10))
-                console.log(moralisObject.isWeb3Enabled)
+                // console.log(moralisObject.isWeb3Enabled)
               }),
             (err) => console.log('Error: ', err)
           )
