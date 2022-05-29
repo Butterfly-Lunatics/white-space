@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      {nfts.map((nft: any, i: any) => (
+      {nfts.map((nft: any, i: number) => (
         <p key={i}>{JSON.stringify(nft)}</p>
       ))}
     </div>

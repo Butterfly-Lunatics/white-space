@@ -1,4 +1,5 @@
-import React from 'react'
+import router from 'next/router'
+import React, { useEffect, useState } from 'react'
 import { useMoralisFile } from 'react-moralis'
 import useAuth from '../hooks/useAuthentication'
 
@@ -6,10 +7,15 @@ const Index = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [imageName, setImageName] = React.useState('UPLOAD A PROFILE PIC')
 
-console.log(inputRef.current)
+  console.log(inputRef.current)
   const usernameRef = React.useRef<HTMLInputElement>(null)
   const { saveFile } = useMoralisFile()
   const [{ user }] = useAuth()
+  const [registered, setRegistered] = useState(!!user?.get('userData').username)
+
+  useEffect(() => {
+    registered && router.replace('/explore')
+  }, [registered])
 
   const getPicture = async () => {
     const file = inputRef.current?.files?.[0]!
@@ -42,7 +48,9 @@ console.log(inputRef.current)
                   !inputRef.current?.files?.[0]
                     ? 'UPLOAD A PROFILE PIC'
                     : inputRef.current?.files?.[0].name?.substring(0, 20) +
-                        (inputRef.current?.files?.[0].name.length > 20 ? '...' : "")
+                        (inputRef.current?.files?.[0].name.length > 20
+                          ? '...'
+                          : '')
                 )
               }}
             />
@@ -65,6 +73,7 @@ console.log(inputRef.current)
               }
               user?.set('userData', data)
               await user?.save()
+              setRegistered(true)
             }}
           >
             SUBMIT

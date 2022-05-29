@@ -9,9 +9,9 @@ const Hero: NextPage = () => {
       <div className="mx-auto w-4/5">
         <Navbar active="home" />
         <div className="flex items-center justify-between py-20">
-          <div className='relative'>
+          <div className="relative">
             <img src="/static/hero_img.png" alt="" />
-            <div className='font-indie text-white text-center absolute top-1/3 -right-14 text-2xl leading-6'>
+            <div className="absolute top-1/3 -right-14 text-center font-indie text-2xl leading-6 text-white">
               ADD YOUR <br /> BRAND <br />
               HERE
             </div>
@@ -25,12 +25,12 @@ const Hero: NextPage = () => {
               Web 3
             </div>
             <div className="mt-5 flex w-full justify-between gap-10 text-black">
-              <Link href={'/'}>
+              <Link href="/explore">
                 <button className="w-[50%] rounded-[14px] bg-[#52FF00] py-3 font-pop text-xl font-extrabold">
                   Buy a Space
                 </button>
               </Link>
-              <Link href={'/'}>
+              <Link href="/create">
                 <button className="w-[50%] rounded-[14px] bg-white py-3 font-pop text-xl font-extrabold">
                   Sell a Space
                 </button>

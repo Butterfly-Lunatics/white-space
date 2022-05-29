@@ -11,31 +11,39 @@ const Navbar: React.FC<Props> = (props: Props) => {
   return (
     <div className="mx-auto flex w-full items-center justify-between bg-black pt-10 text-white">
       <Image src={Logo} />
-      <div className="flex gap-20 din text-2xl text-white">
-        <Link href={'/'}>
-          <div className={`${props.active === 'home' && 'text-[#52FF00]'}`}>
+      <div className="din flex gap-20 text-2xl text-white">
+        <Link href="/">
+          <button className={`${props.active === 'home' && 'text-[#52FF00]'}`}>
             Home
-          </div>
+          </button>
         </Link>
-        <Link href={'/'}>
-          <div className={`${props.active === 'explore' && 'text-[#52FF00]'}`}>
+        <Link href="/explore">
+          <button
+            className={`${props.active === 'explore' && 'text-[#52FF00]'}`}
+          >
             Explore
-          </div>
+          </button>
         </Link>
-        <Link href={'/'}>
-          <div className={`${props.active === 'create' && 'text-[#52FF00]'}`}>
+        <Link href="/create">
+          <button
+            className={`${props.active === 'create' && 'text-[#52FF00]'}`}
+          >
             Create
-          </div>
+          </button>
         </Link>
-        <Link href={'/'}>
-          <div className={`${props.active === 'register' && 'text-[#52FF00]'}`}>
+        <Link href="/register">
+          <button
+            className={`${props.active === 'register' && 'text-[#52FF00]'}`}
+          >
             Login / Register
-          </div>
+          </button>
         </Link>
-        <Link href={'/'}>
-          <div className={`${props.active === 'contact' && 'text-[#52FF00]'}`}>
+        <Link href="/contact">
+          <button
+            className={`${props.active === 'contact' && 'text-[#52FF00]'}`}
+          >
             Contact Us
-          </div>
+          </button>
         </Link>
       </div>
     </div>
