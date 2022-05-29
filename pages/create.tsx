@@ -2,11 +2,7 @@ import React, { FormEventHandler, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Web3 from 'web3'
 import { contractABI, contractAddress } from '../contracts/contract'
-import {
-  useMoralisFile,
-  useMoralisQuery,
-  useNewMoralisObject,
-} from 'react-moralis'
+import { useMoralisFile, useNewMoralisObject } from 'react-moralis'
 import useAuth from '../hooks/useAuthentication'
 
 const web3 = new Web3(Web3.givenProvider)
