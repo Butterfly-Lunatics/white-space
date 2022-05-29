@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from './Card'
 
 type Props = {}
 
 const Cards = (props: Props) => {
+  const [showModal, setShowModal] = useState()
   return (
     <div className="mx-auto mt-10 grid w-3/5 grid-cols-3 gap-8">
-      <Card
+      {/* <Card
         color="#385899"
         logo="fb.png"
         heading="facebook.com"
@@ -41,7 +42,7 @@ const Cards = (props: Props) => {
         logo="sv.png"
         heading="strideventures.in"
         subheading="Stride Ventures provides comprehensive credit solutions to new-age businesses in India. "
-      />
+      /> */}
     </div>
   )
 }
