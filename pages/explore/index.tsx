@@ -122,7 +122,7 @@ const Index: NextPage = (props: Props) => {
             data={data}
           />
         ))}
-        {cards}
+        {/* {cards} */}
       </div>
     </div>
   )
