@@ -5,7 +5,7 @@ const options = {
   chain: 'rinkeby',
   address: '0x7a84ac83a8e54bd8f8bd79cfae12038c46b417a3',
 }
-const initialState = []
+const initialState: any = []
 
 function App() {
   const { isInitialized, Moralis } = useMoralis()
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     if (isInitialized) {
-      Moralis.Web3API.account.getNFTs(options).then(setNfts)
+      Moralis.Web3API.account.getNFTs(options as any).then(setNfts)
     }
   }, [isInitialized, Moralis])
 
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      {nfts.map((nft, i) => (
+      {nfts.map((nft: any, i: any) => (
         <p key={i}>{JSON.stringify(nft)}</p>
       ))}
     </div>
