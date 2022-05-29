@@ -17,8 +17,6 @@ const Card = (props: Props) => {
     } else setToSell(false)
   }
 
-  console.log(toSell ? 'Sold' : 'Not Sold')
-
   return (
     <div
       className="flex w-full min-w-[292px] flex-col items-center rounded-xl border-2 shadow-xl hover:cursor-pointer"
