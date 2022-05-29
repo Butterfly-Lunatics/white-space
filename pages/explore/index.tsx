@@ -72,23 +72,28 @@ const DATA: Card[] = [
   },
 ]
 
+export type Data = {
+  token_id: string
+  image: string
+  metadata: {
+    name: string
+    description: string
+    image: string
+    logo: string
+  }
+  username: string
+  sold?: boolean
+}
+
 const Index: NextPage = (props: Props) => {
   const colors = ['#385899', '#ea4335', '#021e66', '#021e66']
 
   const { data, isLoading } = useMoralisQuery('Sellers')
-  const [realCards, setRealCards] = useState<
-    {
-      description: string
-      name: string
-      image: string
-      logo: string
-      sold?: boolean
-    }[]
-  >([])
+  const [realCards, setRealCards] = useState<Data[]>([])
 
   useEffect(() => {
     if (!isLoading) {
-      setRealCards(data.map((e) => e.attributes['metadata']).reverse())
+      setRealCards(data.map((e) => e.attributes as any).reverse())
     }
   }, [isLoading])
 
@@ -108,15 +113,15 @@ const Index: NextPage = (props: Props) => {
       <div className="mx-auto mt-10 grid w-4/5 grid-cols-4 gap-5">
         {realCards.map((data) => (
           <Card
-            key={data.name}
+            key={data.metadata.name}
             color={colors[Math.floor(Math.random() * colors.length)]}
-            heading={data.name}
-            logo={data.logo || data.image}
-            subheading={data.description}
+            heading={data.metadata.name}
+            logo={data.metadata.logo || data.metadata.image}
+            subheading={data.metadata.description}
             isSold={data.sold}
+            data={data}
           />
         ))}
-        {cards}
         {cards}
       </div>
     </div>

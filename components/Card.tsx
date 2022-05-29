@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Data } from '../pages/explore'
 
 type Props = {
   color: string
@@ -6,6 +7,7 @@ type Props = {
   heading: string
   subheading: string
   isSold?: boolean
+  data?: Data
 }
 
 const Card = (props: Props) => {
@@ -16,8 +18,6 @@ const Card = (props: Props) => {
       setToSell(true)
     } else setToSell(false)
   }
-
-  console.log(toSell ? 'Sold' : 'Not Sold')
 
   return (
     <div
