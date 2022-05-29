@@ -82,12 +82,21 @@ const Index = (props: Props) => {
           className="din relative h-[350px] w-1/2 rounded-lg border-2 border-black bg-rose-50 text-4xl hover:cursor-pointer"
           onClick={() => r_image.current?.click()}
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{
-            display: imgName === 'click to add screenshot of the space' ? 'none' : 'block'
-          }}>
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{
+              display:
+                imgName === 'click to add screenshot of the space'
+                  ? 'none'
+                  : 'block',
+            }}
+          >
             {imgName}
           </div>
-          <img className="h-full w-full object-cover rounded-lg" ref={r_finalimage} />
+          <img
+            className="h-full w-full rounded-lg object-cover"
+            ref={r_finalimage}
+          />
         </div>
       </div>
       <button
