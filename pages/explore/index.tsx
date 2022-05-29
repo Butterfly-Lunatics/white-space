@@ -111,6 +111,7 @@ const Index: NextPage = (props: Props) => {
             heading={data.name}
             logo={data.logo || data.image}
             subheading={data.description}
+            isSold={data.sold}
           />
         ))}
         {cards}
