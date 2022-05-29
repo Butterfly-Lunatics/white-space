@@ -40,6 +40,7 @@ const Index = () => {
           name: title,
           description: desc,
           image: imageurl,
+          logo: user?.get('userData')?.profilePic,
         }
         console.log('uploading')
 
