@@ -73,6 +73,8 @@ const DATA: Card[] = [
 ]
 
 const Index: NextPage = (props: Props) => {
+  const colors = ['#385899', '#ea4335', '#021e66', '#021e66']
+
   const { data, isLoading } = useMoralisQuery('Sellers')
   const [realCards, setRealCards] = useState<
     {
@@ -86,7 +88,7 @@ const Index: NextPage = (props: Props) => {
 
   useEffect(() => {
     if (!isLoading) {
-      setRealCards(data.map((e) => e.attributes['metadata']))
+      setRealCards(data.map((e) => e.attributes['metadata']).reverse())
     }
   }, [isLoading])
 
@@ -107,7 +109,7 @@ const Index: NextPage = (props: Props) => {
         {realCards.map((data) => (
           <Card
             key={data.name}
-            color={'#3079ae'}
+            color={colors[Math.floor(Math.random() * colors.length)]}
             heading={data.name}
             logo={data.logo || data.image}
             subheading={data.description}

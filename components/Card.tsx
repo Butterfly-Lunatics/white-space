@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 type Props = {
   color: string
@@ -9,8 +9,21 @@ type Props = {
 }
 
 const Card = (props: Props) => {
+  const [toSell, setToSell] = useState(false)
+
+  const clickHandler = () => {
+    if (confirm('Are you sure you want to buy this space?')) {
+      setToSell(true)
+    } else setToSell(false)
+  }
+
+  console.log(toSell ? 'Sold' : 'Not Sold')
+
   return (
-    <div className="flex w-full min-w-[292px] flex-col items-center rounded-xl border-2 shadow-xl">
+    <div
+      className="flex w-full min-w-[292px] flex-col items-center rounded-xl border-2 shadow-xl hover:cursor-pointer"
+      onClick={clickHandler}
+    >
       <div
         className="relative h-20 w-full rounded-t-xl"
         style={{
