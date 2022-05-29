@@ -19,7 +19,11 @@ const Index = () => {
           <img src="/static/metamask.svg" />
           <button
             className="rounded-lg bg-[#f24c4c] px-10 py-3 font-pop text-2xl font-extrabold text-white"
-            onClick={() => authenticate()}
+            onClick={() =>
+              authenticate({
+                signingMessage: 'Authorize White Space to use your information',
+              })
+            }
           >
             CONNECT WITH METAMASK
           </button>
