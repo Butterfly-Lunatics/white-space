@@ -75,7 +75,13 @@ const DATA: Card[] = [
 const Index: NextPage = (props: Props) => {
   const { data, isLoading } = useMoralisQuery('Sellers')
   const [realCards, setRealCards] = useState<
-    { description: string; name: string; image: string; logo: string }[]
+    {
+      description: string
+      name: string
+      image: string
+      logo: string
+      sold?: boolean
+    }[]
   >([])
 
   useEffect(() => {

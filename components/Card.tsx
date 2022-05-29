@@ -5,6 +5,7 @@ type Props = {
   logo: string
   heading: string
   subheading: string
+  isSold?: boolean
 }
 
 const Card = (props: Props) => {
