@@ -138,7 +138,7 @@ const Index = () => {
             <label>Description</label>
             <textarea
               className="w-full rounded-lg border-2 border-black p-2 text-xl"
-              ref={r_desc}
+              ref={r_desc as any}
             />
           </div>
           <div className="din flex flex-col gap-2 text-3xl">
