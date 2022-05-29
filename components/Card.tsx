@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Data } from '../pages/explore'
+import Modal from './Modal'
 
 type Props = {
   color: string
@@ -14,9 +15,7 @@ const Card = (props: Props) => {
   const [toSell, setToSell] = useState(false)
 
   const clickHandler = () => {
-    if (confirm('Are you sure you want to buy this space?')) {
-      setToSell(true)
-    } else setToSell(false)
+    setToSell(!toSell)
   }
 
   return (
@@ -46,6 +45,9 @@ const Card = (props: Props) => {
       <div className="px-5 pt-3 pb-5 text-center font-mont text-sm font-medium uppercase leading-5 text-[#787878]">
         {props.subheading}
       </div>
+      {toSell && props.data && (
+        <Modal data={props.data} clickHandler={clickHandler} />
+      )}
     </div>
   )
 }
