@@ -7,14 +7,13 @@ const Index = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [imageName, setImageName] = React.useState('UPLOAD A PROFILE PIC')
 
-  console.log(inputRef.current)
+  // console.log(inputRef.current)
   const usernameRef = React.useRef<HTMLInputElement>(null)
   const { saveFile } = useMoralisFile()
   const [{ user }] = useAuth()
   const [registered, setRegistered] = useState(
-    user?.get('userData').username === undefined
+    user?.get('userData')?.username !== undefined
   )
-
   useEffect(() => {
     registered && router.replace('/explore')
   }, [registered])
@@ -31,12 +30,12 @@ const Index = () => {
         <img src="/static/logo.svg" className="h-[150px]" />
       </div>
       <div className="justify relative h-full w-3/5 shadow-xl">
-        <div className="din mt-20 text-center text-7xl">Hello, wallet add</div>
+        <div className="din mt-20 text-center text-7xl">Hello, New User</div>
         <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-10">
           <div className="flex w-full flex-col gap-3 text-3xl">
             <label className="text-left font-pop">Name</label>
             <input
-              className="rounded-lg border-2 border-black"
+              className="rounded-lg border-2 border-black pl-2 pt-2 pb-2"
               ref={usernameRef}
             />
             <label className="text-left font-pop">Profile Pic</label>

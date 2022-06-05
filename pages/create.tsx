@@ -11,8 +11,7 @@ const web3 = new Web3(Web3.givenProvider)
 const contract = new web3.eth.Contract(contractABI, contractAddress)
 
 const Index = () => {
-
-  const router = useRouter();
+  const router = useRouter()
 
   const r_title = useRef<HTMLInputElement | null>(null)
   const r_desc = useRef<HTMLTextAreaElement | null>(null)
@@ -30,7 +29,7 @@ const Index = () => {
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
-    setLoading(true);
+    setLoading(true)
     const title = r_title.current?.value
     const desc = (r_desc.current as any).value
     const price = r_price.current?.value
@@ -75,8 +74,8 @@ const Index = () => {
           `NFT successfully minted. Contract address - ${contractAddress} and Token ID - ${tokenId}`
         )
 
-        setLoading(false);
-          
+        setLoading(false)
+
         const data = {
           token_id: tokenId,
           image: image?._url,
@@ -89,7 +88,7 @@ const Index = () => {
           onError: (e) => console.log(e.message),
         })
         // insert confetti here
-  
+
         router.push('/explore')
       }
     } catch (err) {
@@ -109,7 +108,6 @@ const Index = () => {
     r_finalimage.current!.src = URL.createObjectURL(r_image.current!.files![0])
   }
 
-
   return (
     <div className="relative w-full">
       {loading && <Spinner />}
@@ -121,7 +119,7 @@ const Index = () => {
           </div>
           <img
             src={user?.attributes['userData'].profilePic}
-            className="absolute left-1/2 top-full h-[120px] aspect-square object-cover -translate-x-1/2 -translate-y-1/2 rounded-full outline outline-8 outline-white"
+            className="absolute left-1/2 top-full aspect-square h-[120px] -translate-x-1/2 -translate-y-1/2 rounded-full object-cover outline-dashed outline-8 outline-stone-900"
           />
         </div>
       </div>
@@ -155,7 +153,7 @@ const Index = () => {
             ref={r_image}
             onChange={imageHandler}
           />
-          <button type='submit' ref={r_submit}></button>
+          <button type="submit" ref={r_submit}></button>
         </form>
         <div
           className="din relative h-[350px] w-1/2 rounded-lg border-2 border-black bg-rose-50 text-4xl hover:cursor-pointer"
@@ -181,7 +179,9 @@ const Index = () => {
       <button
         className="absolute left-1/2 mt-10 w-1/5 -translate-x-1/2 rounded-lg bg-[#52ff00] py-3 font-pop text-2xl font-extrabold"
         type="button"
-        onClick ={()=> {r_submit.current?.click()}}
+        onClick={() => {
+          r_submit.current?.click()
+        }}
       >
         SUBMIT
       </button>

@@ -27,7 +27,7 @@ const Modal = (props: Props) => {
   }
 
   return (
-    <div className="absolute top-1/2 left-1/2  z-10 w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-xl hover:cursor-default">
+    <div className="absolute top-1/2 left-1/2 z-10  w-2/5 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white shadow-2xl hover:cursor-default">
       <div className="din rounded-t-xl bg-[#52ff00] py-5 text-center text-5xl">
         {props.data.metadata.name}
       </div>
