@@ -30,4 +30,7 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 # Showcase
 
-![Home Page](./public/showcase/homepage.png)
+|     ![Home Page](./public/showcase/homepage.png)     |       ![New User](./public/showcase/newuser.png)        |
+| :--------------------------------------------------: | :-----------------------------------------------------: |
+| ![Create WhiteSpace](./public/showcase/createws.png) | ![Explore WhiteSpaces](./public/showcase/explorews.png) |
+|    ![Buy WhiteSpace](./public/showcase/buyws.png)    |     ![Contact Us](./public/showcase/contactus.png)      |
